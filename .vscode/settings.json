@@ -1,0 +1,100 @@
+{
+  "files.associations": {
+    "*.dockerfile": "dockerfile",
+    "*.sh.tpl": "shellscript",
+    "docker-compose*.yml": "yaml",
+    "Dockerfile*": "dockerfile",
+    "*.yaml.tpl": "yaml",
+    "*.yml.tpl": "yaml",
+    "*.ino": "cpp"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "__debug_bin": true,
+    "vendor/": true,
+    "go.sum": true,
+    "**/node_modules": true,
+    "**/Thumbs.db": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
+  "files.eol": "\n",
+  "remote.extensionKind": {
+    "ms-azuretools.vscode-docker": "ui",
+    "ms-vscode-remote.remote-containers": "ui"
+  },
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.rulers": [79],
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 79,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.trimAutoWhitespace": true,
+  "prettier.requireConfig": true,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "Visual Studio Dark",
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features",
+    "editor.foldingStrategy": "indentation"
+  },
+  "[dockerfile]": {
+      "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[yml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.copyOnSelection": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true
+  },
+  "markdown.extension.toc.levels": "2..6",
+  "markdown.extension.print.absoluteImgPath": false,
+  "yaml.format.enable": true,
+  "yaml.format.singleQuote": false,
+  "yaml.format.bracketSpacing": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  },
+  "C_Cpp.default.cppStandard": "c++17",
+  "platformio-ide.useBuiltinPIOCore": true,
+  "platformio-ide.autoRebuildAutocompleteIndex": true,
+  "platformio-ide.activateProjectOnOpen": true
+}

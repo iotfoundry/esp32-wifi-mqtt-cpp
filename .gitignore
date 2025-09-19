@@ -1,0 +1,18 @@
+# Configuration files with sensitive data
+esp32-wifi-mqtt/wifi_config.h
+esp32-wifi-mqtt/mqtt_config.h
+
+# Arduino IDE
+*.ino.bak
+
+# Test files
+test_sketch/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

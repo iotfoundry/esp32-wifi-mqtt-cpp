@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."]
+    },
+    "shell": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-shell"]
+    },
+    "arduino-cli": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-arduino-cli"],
+      "env": {
+        "ARDUINO_CLI_BOARD": "esp32:esp32:esp32c3"
+      }
+    },
+    "wifi-docs": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-wifi-docs"],
+      "env": {
+        "WIFI_DOCS_SOURCES": "arduino-esp32,esp-idf"
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+name: ESP32 Arduino Project Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  PROJECT_NAME: esp32-wifi-mqtt
+  BOARD_FQBN: esp32:esp32:esp32c3
+  CORE_URL: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Arduino CLI
+      uses: arduino/setup-arduino-cli@v1
+
+    - name: Install ESP32 Core
+      run: |
+        arduino-cli core update-index --additional-urls ${{ env.CORE_URL }}
+        arduino-cli core install esp32:esp32
+
+    - name: Install Required Libraries
+      run: |
+        arduino-cli lib install "WiFi"
+        arduino-cli lib install "PubSubClient"
+        arduino-cli lib install "ArduinoJson"
+
+    - name: Setup Configuration Files
+      run: |
+        # Create config files from templates
+        cp ${{ env.PROJECT_NAME }}/wifi_config_template.h ${{ env.PROJECT_NAME }}/wifi_config.h
+        cp ${{ env.PROJECT_NAME }}/mqtt_config_template.h ${{ env.PROJECT_NAME }}/mqtt_config.h
+        echo "✅ Configuration files created from templates"
+
+    - name: Compile Main Sketch
+      run: |
+        arduino-cli compile --fqbn ${{ env.BOARD_FQBN }} ${{ env.PROJECT_NAME }}
+        echo "✅ Compilation successful"
+
+    - name: Run Basic Tests
+      run: |
+        echo "🔍 Running basic tests..."
+
+        # Check for hardcoded credentials (critical)
+        echo "Checking for hardcoded credentials..."
+        if grep -r "const char.*WIFI_SSID.*=" ${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.ino; then
+          echo "❌ Hardcoded WiFi credentials found"
+          exit 1
+        fi
+        if grep -r "const char.*MQTT_BROKER.*=" ${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.ino; then
+          echo "❌ Hardcoded MQTT credentials found"
+          exit 1
+        fi
+        echo "✅ No hardcoded credentials found"
+
+        # Check for required includes (critical)
+        echo "Checking for required includes..."
+        if ! grep -q '#include "wifi_config.h"' ${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.ino; then
+          echo "❌ Missing wifi_config.h include"
+          exit 1
+        fi
+        if ! grep -q '#include "mqtt_config.h"' ${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.ino; then
+          echo "❌ Missing mqtt_config.h include"
+          exit 1
+        fi
+        if ! grep -q '#include <WiFi.h>' ${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.ino; then
+          echo "❌ Missing WiFi library include"
+          exit 1
+        fi
+        if ! grep -q '#include <PubSubClient.h>' ${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.ino; then
+          echo "❌ Missing PubSubClient library include"
+          exit 1
+        fi
+        if ! grep -q '#include <ArduinoJson.h>' ${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.ino; then
+          echo "❌ Missing ArduinoJson library include"
+          exit 1
+        fi
+        echo "✅ All required includes found"
+
+    - name: Test Results
+      run: |
+        echo "🎉 All tests completed successfully!"
+        echo "✅ Compilation successful"
+        echo "✅ No hardcoded credentials"
+        echo "✅ All required includes present"
+        echo ""
+        echo "📊 Test Summary:"
+        echo "  - Project: ${{ env.PROJECT_NAME }}"
+        echo "  - Board: ${{ env.BOARD_FQBN }}"
+        echo "  - Status: Ready for deployment"
