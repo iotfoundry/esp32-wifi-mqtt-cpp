@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "davidanson.vscode-markdownlint",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "foxundermoon.shell-format",
+    "Gruntfuggly.todo-tree",
+    "mhutchie.git-graph",
+    "ms-vscode.cpptools",
+    "ms-vscode.vscode-json",
+    "platformio.platformio-ide",
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "vsciot-vscode.vscode-arduino",
+    "vscode-icons-team.vscode-icons"
+  ]
+}
